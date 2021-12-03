@@ -12,7 +12,7 @@ const initialState = {
     g: getRandomColor(),
     b: getRandomColor(),
     panels: [],
-    message: false
+    message: ''
 }
 
 export const ColorProvider = ({ children }) => {

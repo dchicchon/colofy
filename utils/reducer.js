@@ -19,7 +19,7 @@ export function reducer(state, action) {
             if (state.panels.length === 25) {
                 return {
                     ...state,
-                    message: true
+                    message: 'You must delete a panel in order to add new ones'
                 }
             }
             let newPanel = createPanel()
