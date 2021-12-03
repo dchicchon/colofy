@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { ADD_PANEL, CHANGE_PANEL, REMOVE_PANEL } from '../utils/actions'
+import { ADD_PANEL, CHANGE_PANEL, REMOVE_PANEL, SET_MESSAGE } from '../utils/actions'
 import { useDispatchContext, useStateContext } from '../utils/ColorContext'
 
 const ToolTip = (props) => {
@@ -15,11 +15,11 @@ const ToolTip = (props) => {
 
     const hideTip = () => {
         clearInterval(timeout)
-        setActive(false)
+        setActive(false)    
     }
 
     return (
-        <div onMouseOver={showTip} onMouseLeave={hideTip} className={styles.tooltipWrapper}>
+        <div onMouseEnter={showTip} onMouseLeave={hideTip} className={styles.tooltipWrapper}>
             {props.children}
             {active && (
                 <div className={styles.tooltip}>
@@ -39,8 +39,11 @@ const ControlBoard = () => {
             text += `${panel.color},`
         }
         navigator.clipboard.writeText(text)
+        dispatch({
+            type: SET_MESSAGE,
+            payload: 'Palette Copied to clipboard'
+        })
     }
-
     return (
         <div className={styles.controlWrapper}>
             <FloatingButton action={() => dispatch({ type: ADD_PANEL })} label='Add Panel' symbol="+" />
@@ -117,7 +120,31 @@ const PanelBoard = () => {
 }
 
 const Messages = () => {
+    let timeout;
     const state = useStateContext();
+    const dispatch = useDispatchContext()
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        if (state.message === '') {
+        } else {
+            clearInterval(timeout)
+            console.log("Change message")
+            console.log(state.message)
+            timeout = setTimeout(() => {
+                console.log("Reset Message")
+                dispatch({ type: SET_MESSAGE, payload: '' })
+            }, 5000)
+        }
+    }, [state.message])
+
+    const showMessage = () => {
+
+    }
+    const hideMessage = () => {
+
+    }
+
     if (state.message) {
         return (
             <div className={styles.messages}>

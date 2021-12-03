@@ -1,4 +1,4 @@
-import { ADD_PANEL, CHANGE_PANEL, REMOVE_PANEL } from "./actions";
+import { ADD_PANEL, CHANGE_PANEL, REMOVE_PANEL, SET_MESSAGE } from "./actions";
 import { v4 as uuid } from 'uuid'
 
 export const getRandomColor = () => Math.floor(Math.random() * 255)
@@ -25,6 +25,7 @@ export function reducer(state, action) {
             let newPanel = createPanel()
             return {
                 ...state,
+                message: "Panel added",
                 panels: [...state.panels, newPanel]
             }
         }
@@ -48,6 +49,12 @@ export function reducer(state, action) {
             return {
                 ...state,
                 panels: panelList
+            }
+        }
+        case SET_MESSAGE: {
+            return {
+                ...state,
+                message: action.payload
             }
         }
         default: {
