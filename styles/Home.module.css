@@ -1,116 +1,130 @@
 .container {
-  padding: 0 2rem;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+.controlList {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0px;
+}
+
+.controlWrapper {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+  color: #85ceff;
+  gap: 10px;
+  bottom: 0;
+  left: 0;
 }
 
 .title {
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
 }
 
-.title,
-.description {
-  text-align: center;
+.controlBoard {
+  filter: drop-shadow(20px 10px 4px rgb(87, 86, 86));
+  border: 1px solid black;
+  border-radius: 25px;
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+  transition: opacity 0.25s;
+  padding: 25px 10px;
+  width: 250px;
+  background-color: #1c2333;
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
+.row {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex: 1 1 100px;
+}
+
+.panel {
+  display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  align-items: center;
+  flex: 1 1 100px;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+.infoPanel {
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  flex-direction: column;
+  color: #85ceff;
+  background-color: #1c2333;
+  padding: 15px;
+  width: 150px;
+  border-radius: 25px;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.input {
+  display: flex;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.tab {
+  user-select: none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  left: 25px;
+  bottom: 25px;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 15px;
+  line-height: 15px;
+  height: 50px;
+  width: 50px;
+  background-color: #1c2333;
+  transition: background-color 0.5s, transform 0.5s;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+.tab:hover {
+  background-color: rgb(54, 68, 99);
+  transform: translateY(-5px);
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.messages {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  opacity: 0;
+  color: #85ceff;
+  padding: 0 10px;
+  border-radius: 25px;
+  background-color: #1c2333;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation-fill-mode: forwards;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@keyframes shake {
+  1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  10%,
+  90% {
+    transform: translate3d(-1px);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
