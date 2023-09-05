@@ -44,9 +44,6 @@
   display: flex;
   flex-direction: column;
   color: #85ceff;
-  background-color: #1c2333;
-  padding: 15px;
-  width: 150px;
   border-radius: 25px;
 }
 
